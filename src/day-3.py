@@ -1,3 +1,6 @@
+from itertools import product
+
+# Set of directions needed to move the vector.
 Directions = {
     'Left': (-1, 0),
     'Right': (1, 0),
@@ -6,6 +9,7 @@ Directions = {
 }
 
 class Vector:
+    """A vector of this class moves one step forming a spiral."""
     def __init__(self):
         self.x = 0
         self.y = 0
@@ -19,6 +23,7 @@ class Vector:
         self.direction = 'Right'
 
     def move(self):
+        """Move one more step forming a spiral."""
         # Check if the next move has to be left
         if self.x > self.max_x:
             self.direction = 'Up'
@@ -39,11 +44,13 @@ class Vector:
         self._apply_direction()
 
     def _apply_direction(self):
+        """Move to the direction that the vector is pointing to."""
         # Move the vector
         delta_x, delta_y = Directions[self.direction]
         self.x, self.y = self.x + delta_x, self.y + delta_y
 
     def distance(self):
+        """Return the Manhattan distance of the current vector."""
         return abs(self.x) + abs(self.y)
 
 def main():
@@ -56,6 +63,22 @@ def main():
 
     print('Solution to the first problem is', vec.distance())
 
+    # Next problem is to sum the adjacent squares in the value.
+    squares = {(0, 0): 1}
+    vec = Vector()
+    while vec.value < n:
+        vec.move()
+        value = 0
+        for adjacent in product((-1, 0, 1), repeat=2):
+            square = (vec.x + adjacent[0], vec.y + adjacent[1])
+            try:
+                value += squares[square]
+            except KeyError:
+                pass
+        vec.value = value
+        squares[(vec.x, vec.y)] = value
+
+    print('Solution to the second problem is', vec.value)
 
 
 if __name__ == '__main__':
