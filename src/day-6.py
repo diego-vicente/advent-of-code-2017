@@ -10,6 +10,9 @@ def main():
         state = redistribute(state)
         steps += 1
     print('Solution to the problem 1 is', steps)
+    loop_length = steps - prev_states.index(state)
+    print('Solution to the problem 2 is', loop_length)
+
 
 def redistribute(state):
     """Redistribute the blocks from the biggest slot in memory."""
