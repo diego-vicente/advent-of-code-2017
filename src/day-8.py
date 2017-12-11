@@ -2,8 +2,9 @@ from collections import defaultdict
 
 
 def main():
-    results = run_instructions('src/day-8.txt')
+    results, maximum = run_instructions('src/day-8.txt')
     print('Solution to problem 1 is', max(results.values()))
+    print('Solution to problem 2 is', maximum)
 
 def run_instructions(filename):
     """Run a set of instructions collected in a text file."""
@@ -11,6 +12,7 @@ def run_instructions(filename):
         instructions = f.readlines()
 
     registers = defaultdict(int)
+    maximum = 0
 
     for instruction in instructions:
         target, op, value, _, lhs, cond, rhs = instruction.split(' ')
@@ -21,7 +23,9 @@ def run_instructions(filename):
             elif op == 'dec':
                 registers[target] -= int(value)
 
-    return registers
+        maximum = max(max(registers.values()), maximum)
+
+    return registers, maximum
 
 def check_condition(lhs, cond, rhs):
     """Check if a given condition is true."""
