@@ -1,5 +1,7 @@
 from collections import defaultdict
+from functools import reduce
 import re
+import random
 
 class Graph:
     """Undirected graph representation."""
@@ -31,6 +33,19 @@ class Graph:
                 open_list += list(self.connections[node] - cluster)
         return cluster
 
+    def n_clusters(self):
+        """Return the number of different clusters in a graph."""
+        all_nodes = set(self.connections.keys())
+        clusters = []
+        clusters_union = set()
+
+        while clusters_union != all_nodes:
+            new_root = random.sample(all_nodes - clusters_union, 1)[0]
+            clusters.append(self.get_cluster(new_root))
+            clusters_union = reduce(lambda x, acc: acc.union(x), clusters)
+
+        return len(clusters)
+
 def main():
     with open('src/day-12.txt', 'r') as f:
         pipes = f.readlines()
@@ -38,6 +53,7 @@ def main():
     graph = Graph()
     graph.build_graph(pipes)
     print('Solution to problem 1 is', len(graph.get_cluster('0')))
+    print('Solution to problem 1 is', graph.n_clusters())
 
 
 if __name__ == '__main__':
