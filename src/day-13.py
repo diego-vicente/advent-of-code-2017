@@ -7,7 +7,13 @@ def main():
         layer, depth = line.split(': ')
         firewall.append((int(layer), int(depth)))
 
-    print(severity(firewall))
+    print('Solution to problem 1 is', severity(firewall))
+
+    wait = 0
+    while caught(firewall, wait):
+        wait += 1
+
+    print('Solution to problem 2 is', wait)
 
 def severity(firewall):
     """Compute the severity of a run through the firewall."""
@@ -24,13 +30,19 @@ def severity(firewall):
 
     return severity
 
-def test():
-    for i in range(20):
-        if i % ((3-1)*2) >= 3:
-            guard = -(i+2) % 3
-        else:
-            guard = i % 3
-        print(guard)
+def caught(firewall, wait):
+    """Compute if you get caught after waiting for the run in a firewall."""
+    for layer, depth in firewall:
+        # Offset is necessary to compute the positions bouncing
+        offset = (wait + layer) % ((depth - 1) * 2)
+        # The position of the guard at a layer when we arrive
+        guard = 2 * (depth - 1) - offset if offset > depth - 1 else offset
+
+        if guard == 0:
+            return True
+
+    return False
+
 
 if __name__ == '__main__':
    main()
