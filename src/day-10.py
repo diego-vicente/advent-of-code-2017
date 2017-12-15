@@ -26,7 +26,7 @@ def knot_hash_round(circular_list, lengths, skip_size, pos):
 
     return circular_list, pos, skip_size
 
-def knot_hash(string):
+def knot_hash(string, output='hex'):
     """Obtain the knot hash of a certain string"""
 
     # Obtain the lengths from the ASCII codes
@@ -46,7 +46,10 @@ def knot_hash(string):
     bins = np.bitwise_xor.reduceat(c_list, indices)
 
     # Return the hexadecimal string representation of the dense hash
-    return ''.join('{:02x}'.format(x) for x in bins)
+    if output == 'hex':
+        return ''.join('{:02x}'.format(x) for x in bins)
+    elif output == 'bin':
+        return ''.join('{:08b}'.format(x) for x in bins)
 
 
 
