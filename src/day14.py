@@ -1,10 +1,12 @@
 import numpy as np
+from skimage.measure import label
 
 from day10 import knot_hash
 
 def main():
     grid = generate_grid('stpzcrnm')
     print('Solution to problem 1 is', grid.sum())
+    print('Solution to problem 2 is', label(grid, neighbors=4).max())
 
 def generate_grid(grid_hash):
     """Create a 128x128 grid from a given knot-hash."""
@@ -20,4 +22,4 @@ def generate_row(row, grid_hash):
 
     
 if __name__ == '__main__':
-   main()
+    main()
