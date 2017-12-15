@@ -49,10 +49,8 @@ def knot_hash(string, output='hex'):
     if output == 'hex':
         return ''.join('{:02x}'.format(x) for x in bins)
     elif output == 'bin':
-        return ''.join('{:08b}'.format(x) for x in bins)
-
-
-
+        hex_out = ''.join('{:02x}'.format(x) for x in bins)
+        return ''.join('{:04b}'.format(int(x, 16)) for x in hex_out)
 
 if __name__ == '__main__':
     main()
