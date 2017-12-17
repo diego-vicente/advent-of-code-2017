@@ -7,6 +7,22 @@ def main():
     final = dance(moves)
     print('Solution to Problem 1 is', final)
 
+    party = None
+    positions = []
+    iterations = 1000000000000
+
+    for i in range(iterations):
+        party = dance(moves, party)
+        if party in positions:
+            cycle_length = i - positions.index(party)
+            cycled_final = (iterations - 1) % cycle_length
+            party = positions[cycled_final]
+            break
+        positions.append(party)
+
+    print('Solution to Problem 2 is', party)
+
+
 def dance(moves, party=None):
     """Perform a list of moves on the party."""
     if not party:
