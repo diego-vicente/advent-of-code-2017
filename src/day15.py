@@ -1,24 +1,39 @@
-def generator(n, factor, times):
+def generator(n, factor):
     """Create a generator defining its initial conditions."""
-    for _ in range(times):
+    while True:
         n = (n * factor) % 2147483647
         yield n
 
-def compare_generator(generator_a, generator_b):
+def multiple_generator(n, factor, multiple):
+    """Create a generator checking for multiplie defining."""
+    while True:
+        n = (n * factor) % 2147483647
+        if (n % multiple) == 0:
+            yield n
+
+def compare_generator(generator_a, generator_b, pairs):
+    """Compare two generators during a given amount of pairs."""
     count = 0
 
-    for a, b in zip(generator_a, generator_b):
-        if '{:032b}'.format(a)[-16:] == '{:032b}'.format(b)[-16:]:
+    for _ in range(pairs):
+        a, b, = next(generator_a), next(generator_b)
+        if a & 0xFFFF == b & 0xFFFF:
             count += 1
 
     return count
 
-
 def main():
-    generator_a = generator(883, 16807, 40000000)
-    generator_b = generator(879, 48271, 40000000)
+    generator_a = generator(883, 16807)
+    generator_b = generator(879, 48271)
 
-    print(compare_generator(generator_a, generator_b))
+    print('Solution to problem 1 is',
+          compare_generator(generator_a, generator_b, 40000000))
+
+    generator_a = multiple_generator(883, 16807, 4)
+    generator_b = multiple_generator(879, 48271, 8)
+
+    print('Solution to problem 2 is',
+          compare_generator(generator_a, generator_b, 5000000))
 
 
 if __name__ == '__main__':
