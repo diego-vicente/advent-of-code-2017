@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 
 class Particle:
     def __init__(self, id, px, py, pz, vx, vy, vz, ax, ay, az):
@@ -24,6 +25,37 @@ class Particle:
         """The amount of velocity from the origin outwards."""
         return abs(self.vx) + abs(self.vy) + abs(self.vz)
 
+    def move(self):
+        """Update the particle properties one tick."""
+        self.vx += self.ax
+        self.vy += self.ay
+        self.vz += self.az
+
+        self.px += self.vx
+        self.py += self.vy
+        self.pz += self.vz
+
+def simulation(particles, iterations):
+    """Run a simulation and return the state of the particles"""
+    for t in range(iterations):
+        positions = defaultdict(list)
+
+        # Move every particle one tick
+        for particle in particles:
+            particle.move()
+            pos = particle.px, particle.py, particle.pz
+            positions[pos].append(particle.id)
+
+        collided = []
+        # Check all the collisions:
+        for position in positions.values():
+            if len(position) > 1:
+                collided += position
+
+        particles = list(filter(lambda p: p.id not in collided, particles))
+
+    return particles
+
 
 def main():
     with open('src/day-20.txt', 'r') as f:
@@ -48,6 +80,9 @@ def main():
         p.absolute_acceleration(),
         p.absolute_velocity()
     )).id)
+
+    particles = simulation(particles, 500)
+    print('Solution to problem 2 is', len(particles))
 
 if __name__ == '__main__':
     main()
