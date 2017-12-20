@@ -10,18 +10,22 @@ def main():
     with open('src/day-19.txt', 'r') as f:
         diagram = f.read().splitlines()
 
-    print(traverse_diagram(diagram))
+    path, steps = traverse_diagram(diagram)
+    print('Solution to problem 1 is', str(path))
+    print('Solution to problem 2 is', steps)
 
 def traverse_diagram(diagram):
     """Return the nodes by traversing the diagram."""
     direction = 'Down'
     dead_end = False
     path = []
+    steps = 0
 
     # Find the starting point
     x, y = (diagram[0].index('|'), 0)
 
     while not dead_end:
+        steps += 1
         move = Directions[direction]
         x, y = x + move[0], y + move[1]
         next_step = diagram[y][x]
@@ -44,7 +48,7 @@ def traverse_diagram(diagram):
         else:
             dead_end = True
 
-    return str(path)
+    return path, steps
 
 
 
