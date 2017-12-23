@@ -4,13 +4,21 @@ def main():
     rules = read_rules('src/day-21.txt')
     string = '.#./..#/###'
     image = np.array(list(map(list, string.split('/'))))
-    for i in range(5):
+    for _ in range(5):
         image = expand(rules, image)
 
     unique, counts = np.unique(image, return_counts=True)
     counts = dict(zip(unique, counts))
 
     print('Solution to problem 1 is', counts['#'])
+
+    for _ in range(13):
+        image = expand(rules, image)
+
+    unique, counts = np.unique(image, return_counts=True)
+    counts = dict(zip(unique, counts))
+
+    print('Solution to problem 2 is', counts['#'])
 
 def read_rules(filename):
     """Process the file containing the rules."""
@@ -29,7 +37,6 @@ def read_rules(filename):
             mat = np.rot90(key, k=k)
             rules[tuple(mat.flatten())] = value
             rules[tuple(np.flipud(mat).flatten())] = value
-            rules[tuple(np.fliplr(mat).flatten())] = value
 
     return rules
 
@@ -47,7 +54,7 @@ def expand(rules, image):
     for i in range(n_chunks):
         row = []
         for j in range(n_chunks):
-            window = image[j*cs : (j+1)*cs, i*cs : (i+1)*cs]
+            window = image[i*cs : (i+1)*cs, j*cs : (j+1)*cs]
             subs = substitution(rules, window)
             row.append(subs)
         next_image.append(np.hstack(row))
