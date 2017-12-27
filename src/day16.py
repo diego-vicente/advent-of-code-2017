@@ -1,7 +1,7 @@
 import re
 
 def main():
-    with open('src/day-16.txt', 'r') as f:
+    with open('data/dance.txt', 'r') as f:
         moves = f.read().split(',')
 
     final = dance(moves)

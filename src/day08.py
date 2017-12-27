@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 def main():
-    results, maximum = run_instructions('src/day-8.txt')
+    results, maximum = run_instructions('data/instructions.txt')
     print('Solution to problem 1 is', max(results.values()))
     print('Solution to problem 2 is', maximum)
 

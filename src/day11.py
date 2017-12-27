@@ -1,7 +1,7 @@
 import numpy as np
 
 def main():
-    with open('src/day-11.txt', 'r') as f:
+    with open('data/hex-path.txt', 'r') as f:
         steps = f.read().replace('\n', '').split(',')
 
     a, b = hex_path(steps)

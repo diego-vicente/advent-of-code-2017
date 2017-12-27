@@ -47,7 +47,7 @@ class Graph:
         return len(clusters)
 
 def main():
-    with open('src/day-12.txt', 'r') as f:
+    with open('data/graph.txt', 'r') as f:
         pipes = f.readlines()
 
     graph = Graph()

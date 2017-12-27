@@ -1,7 +1,7 @@
 import numpy as np
 
 def main():
-    rules = read_rules('src/day-21.txt')
+    rules = read_rules('data/rules.txt')
     string = '.#./..#/###'
     image = np.array(list(map(list, string.split('/'))))
     for _ in range(5):

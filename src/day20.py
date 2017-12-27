@@ -58,7 +58,7 @@ def simulation(particles, iterations):
 
 
 def main():
-    with open('src/day-20.txt', 'r') as f:
+    with open('data/particles.txt', 'r') as f:
         raw_particles = f.read().splitlines()
 
     particles = []

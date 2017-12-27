@@ -71,7 +71,7 @@ class EvolvedCarrier:
 
     
 def main():
-    grid = read_grid('src/day-22.txt')
+    grid = read_grid('data/grid.txt')
 
     carrier = Carrier(12, 12, grid.copy())
     for _ in range(10000):

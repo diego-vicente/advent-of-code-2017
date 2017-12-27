@@ -169,7 +169,7 @@ def naive_duet(instructions):
     return None
 
 def main():
-    with open('src/day-18.txt', 'r') as f:
+    with open('data/tablet.txt', 'r') as f:
         instructions = f.read().splitlines()
 
     print('Solution to problem 1 is', naive_duet(instructions))

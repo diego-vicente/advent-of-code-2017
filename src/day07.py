@@ -8,7 +8,7 @@ class Node:
         self.children = children
 
 def main():
-    root = build_tree('src/day-7.txt')
+    root = build_tree('data/tree.txt')
     print('Solution to problem 1 is', root.name)
     balance_weigths(root)
 

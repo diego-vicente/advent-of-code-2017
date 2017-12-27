@@ -1,5 +1,5 @@
 def main():
-    components = read_components('src/day-24.txt')
+    components = read_components('data/components.txt')
     start = [(0, 0)]
 
     bridge = find_strongest([(0, 0)], components)[1:]

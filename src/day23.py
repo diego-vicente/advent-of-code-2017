@@ -57,7 +57,7 @@ class Program:
         self.ic += 1
 
 def main():
-    with open('src/day-23.txt', 'r') as f:
+    with open('data/code.txt', 'r') as f:
         instructions = f.read().splitlines()
 
     program = Program(instructions)

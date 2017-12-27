@@ -14,7 +14,7 @@ def antipode(lst):
 
 
 def main():
-    with open('data/day-1.txt') as f:
+    with open('data/captcha.txt') as f:
         captcha = list(f.read().splitlines()[0])
 
     print('Solution to problem 1 is', sum_captcha(captcha))

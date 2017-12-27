@@ -1,5 +1,5 @@
 def main():
-    with open('src/day-13.txt', 'r') as f:
+    with open('data/firewall.txt', 'r') as f:
         lines = f.readlines()
 
     firewall = []

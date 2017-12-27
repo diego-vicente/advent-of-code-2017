@@ -1,5 +1,5 @@
 def main():
-    score, garbage = compute_score('src/day-9.txt')
+    score, garbage = compute_score('data/stream.txt')
     print('Solution for Problem 1 is', score)
     print('Solution for Problem 2 is', garbage)
 

@@ -1,7 +1,7 @@
 from copy import copy
 
 def main():
-    with open('src/maze.txt', 'r') as f:
+    with open('data/maze.txt', 'r') as f:
         maze = list(map(int, f.readlines()))
 
     print('Solution to problem 1 is', steps_1(copy(maze)))

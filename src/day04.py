@@ -2,7 +2,7 @@ from collections import Counter
 
 def main():
     passphrases = []
-    with open('src/day-4.txt', 'r') as f:
+    with open('data/passphrases.txt', 'r') as f:
         passphrases = map(lambda x: x.split(), f.readlines())
 
     passphrases = list(passphrases)

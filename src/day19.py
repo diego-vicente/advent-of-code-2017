@@ -7,7 +7,7 @@ Directions = {
 }
 
 def main():
-    with open('src/day-19.txt', 'r') as f:
+    with open('data/diagram.txt', 'r') as f:
         diagram = f.read().splitlines()
 
     path, steps = traverse_diagram(diagram)
