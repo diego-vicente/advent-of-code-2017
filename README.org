@@ -1,0 +1,14 @@
+#+TITLE:  Advent of Code 2017
+#+AUTHOR: Diego Vicente Martín
+#+EMAIL:  mail@diego.codes
+
+This repository contains all the code for my solution (written in Python 3) for
+solving all the puzzles of the [[http://adventofcode.com/2017][Advent of Code 2017]] challenges. Although not in
+a competitive way (living in UTC+01 is quite a handicap, since the challenges
+are released at 6AM), I was able to complete all the challenges on December
+25th
+
+Some of the challenges may require a bit of refactoring and optimization, and I
+expect to write a bit more on it soon (whether on this repository or on a blog
+post); but the code can be interesting for some people and I decided to release
+it as soon as possible. Feel free to open an issue or contact in case of doubt.
